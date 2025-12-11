@@ -4,20 +4,30 @@ import (
 	"clo-engine/internal/algorithm"
 	"clo-engine/internal/models"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 )
 
 func main() {
 
-	// ./clo-engine input.json output.json
-	if len(os.Args) < 3 {
-		fmt.Println("Usage: clo-engine <input.json> <output.jaon>")
+	// debug flag
+	debugFlag := flag.Bool("debug", false, "enable debug logging")
+	flag.Parse()
+
+	args := flag.Args()
+
+	if len(args) < 2 {
+		fmt.Println("Usage: clo-engine [--debug] <input.json> <output.json>")
 		return
 	}
 
-	inputPath := os.Args[1]
-	outputPath := os.Args[2]
+	inputPath := args[0]
+	outputPath := args[1]
+
+	// set debug globally
+	algorithm.DebugEnabled = *debugFlag
+	algorithm.Debug("Debug mode activated")
 
 	// read input.json
 	inputData, err := os.ReadFile(inputPath)
@@ -38,6 +48,8 @@ func main() {
 		return
 	}
 
+	algorithm.Debug("Input JSON parsed successfully")
+
 	// convert item list to pointers
 	items := []*models.ItemInstance{}
 	// map to track counts per parent, so numbering is sequential
@@ -54,12 +66,11 @@ func main() {
 		// ensure ParentItemID exists
 		parentID := src.ParentItemID
 		if parentID == "" {
-			parentID = fmt.Sprintf("ITEM-%id", i+1)
+			parentID = fmt.Sprintf("ITEM-%d", i+1)
 		}
 
 		for k := 0; k < qty; k++ {
 			counts[parentID]++
-			instanceNum := counts[parentID]
 
 			// create new instance copy
 			inst := &models.ItemInstance{
@@ -71,10 +82,12 @@ func main() {
 				AllowRotation:  src.AllowRotation,
 			}
 
-			inst.InstanceID = fmt.Sprintf("%s#%d", parentID, instanceNum)
+			inst.InstanceID = fmt.Sprintf("%s#%d", parentID, counts[parentID])
 			items = append(items, inst)
 		}
 	}
+
+	algorithm.Debug("Expanded into %d item instances", len(items))
 
 	// run packing algo
 	result := algorithm.RunFFD3D(&input.Container, items)
