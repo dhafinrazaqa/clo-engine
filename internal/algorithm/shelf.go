@@ -2,8 +2,9 @@ package algorithm
 
 import "clo-engine/internal/models"
 
-func NewShelf(startZ int, height int) *models.Shelf {
+func NewShelf(index int, startZ int, height int) *models.Shelf {
 	return &models.Shelf{
+		Index:    index,
 		StartZ:   startZ,
 		Height:   height,
 		CurrentX: 0,
@@ -22,11 +23,11 @@ func PlaceItemOnShelf(
 	item.Y = 0
 	item.Z = shelf.StartZ // shelf floor level
 
-	shelf.Items = append(shelf.Items, item)
-
 	shelf.CurrentX += orient.Length
 
 	if orient.Height > shelf.Height {
 		shelf.Height = orient.Height
 	}
+
+	shelf.Items = append(shelf.Items, item)
 }

@@ -30,6 +30,7 @@ type ItemInstance struct {
 }
 
 type Shelf struct {
+	Index    int
 	StartZ   int
 	Height   int
 	CurrentX int
@@ -39,12 +40,20 @@ type Shelf struct {
 type Placement struct {
 	ItemInstanceID string `json:"item_instance_id"`
 	Orientation    string `json:"orientation"`
-	X              int    `json:"x"`
-	Y              int    `json:"y"`
-	Z              int    `json:"z"`
-	Length         int    `json:"length"`
-	Width          int    `json:"width"`
-	Height         int    `json:"height"`
+
+	ShelfIndex  int `json:"shelf_index"`
+	ShelfStartZ int `json:"shelf_start_z"`
+	ShelfHeight int `json:"shelf_height"`
+
+	X int `json:"x"`
+	Y int `json:"y"`
+	Z int `json:"z"`
+
+	Length int `json:"length"`
+	Width  int `json:"width"`
+	Height int `json:"height"`
+
+	Volume int `json:"volume"`
 }
 
 type PackingResult struct {

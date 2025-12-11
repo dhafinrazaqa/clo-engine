@@ -39,12 +39,20 @@ func RunFFD3D(container *models.Container, items []*models.ItemInstance) *models
 					placements = append(placements, models.Placement{
 						ItemInstanceID: item.InstanceID,
 						Orientation:    orient.Name,
-						X:              item.X,
-						Y:              item.Y,
-						Z:              item.Z,
-						Length:         orient.Length,
-						Width:          orient.Width,
-						Height:         orient.Height,
+
+						ShelfIndex:  shelf.Index,
+						ShelfStartZ: shelf.StartZ,
+						ShelfHeight: shelf.Height,
+
+						X: item.X,
+						Y: item.Y,
+						Z: item.Z,
+
+						Length: orient.Length,
+						Width:  orient.Width,
+						Height: orient.Height,
+
+						Volume: orient.Length * orient.Width * orient.Height,
 					})
 
 					placed = true
@@ -67,7 +75,7 @@ func RunFFD3D(container *models.Container, items []*models.ItemInstance) *models
 			}
 
 			// make new shelf
-			newShelf := NewShelf(currentZ, shelfHeight)
+			newShelf := NewShelf(len(shelves), currentZ, shelfHeight)
 			shelves = append(shelves, newShelf)
 
 			PlaceItemOnShelf(item, orient, newShelf)
@@ -75,12 +83,20 @@ func RunFFD3D(container *models.Container, items []*models.ItemInstance) *models
 			placements = append(placements, models.Placement{
 				ItemInstanceID: item.InstanceID,
 				Orientation:    orient.Name,
-				X:              item.X,
-				Y:              item.Y,
-				Z:              item.Z,
-				Length:         orient.Length,
-				Width:          orient.Width,
-				Height:         orient.Height,
+
+				ShelfIndex:  newShelf.Index,
+				ShelfStartZ: newShelf.StartZ,
+				ShelfHeight: newShelf.Height,
+
+				X: item.X,
+				Y: item.Y,
+				Z: item.Z,
+
+				Length: orient.Length,
+				Width:  orient.Width,
+				Height: orient.Height,
+
+				Volume: orient.Length * orient.Width * orient.Height,
 			})
 
 			// update next shelf z lvl
@@ -96,12 +112,11 @@ func RunFFD3D(container *models.Container, items []*models.ItemInstance) *models
 	}
 
 	// metrics
-
 	containerVolume := container.Length * container.Width * container.Height
 
 	packedVolume := 0
 	for _, p := range placements {
-		packedVolume += p.Length * p.Width * p.Height
+		packedVolume += p.Volume
 	}
 
 	utilization := (float64(packedVolume) / float64(containerVolume)) * 100
