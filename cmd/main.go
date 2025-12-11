@@ -40,12 +40,40 @@ func main() {
 
 	// convert item list to pointers
 	items := []*models.ItemInstance{}
-	for i := range input.Items {
-		item := &input.Items[i]
+	// map to track counts per parent, so numbering is sequential
+	counts := make(map[string]int)
 
-		// generate unique instance id
-		item.InstanceID = fmt.Sprintf("%s#%d", item.ParentItemID, i+1)
-		items = append(items, item)
+	for i := range input.Items {
+		src := input.Items[i]
+
+		qty := src.Quantity
+		if qty <= 0 {
+			qty = 1
+		}
+
+		// ensure ParentItemID exists
+		parentID := src.ParentItemID
+		if parentID == "" {
+			parentID = fmt.Sprintf("ITEM-%id", i+1)
+		}
+
+		for k := 0; k < qty; k++ {
+			counts[parentID]++
+			instanceNum := counts[parentID]
+
+			// create new instance copy
+			inst := &models.ItemInstance{
+				ParentItemID:   parentID,
+				OriginalLength: src.OriginalLength,
+				OriginalWidth:  src.OriginalWidth,
+				OriginalHeight: src.OriginalHeight,
+				Quantity:       1, // after expansion each instance is quantity 1
+				AllowRotation:  src.AllowRotation,
+			}
+
+			inst.InstanceID = fmt.Sprintf("%s#%d", parentID, instanceNum)
+			items = append(items, inst)
+		}
 	}
 
 	// run packing algo

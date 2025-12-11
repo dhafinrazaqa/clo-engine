@@ -1,0 +1,134 @@
+{
+  "status": "success",
+  "metrics": {
+    "container_volume": 75858000,
+    "packed_volume": 10560000,
+    "utilization_percent": 13.920746658229852,
+    "total_items": 12,
+    "items_packed": 12,
+    "items_unpacked": 0
+  },
+  "placements": [
+    {
+      "item_instance_id": "SKU-02#1",
+      "orientation": "XYZ",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "length": 200,
+      "width": 120,
+      "height": 100
+    },
+    {
+      "item_instance_id": "SKU-02#2",
+      "orientation": "XYZ",
+      "x": 200,
+      "y": 0,
+      "z": 0,
+      "length": 200,
+      "width": 120,
+      "height": 100
+    },
+    {
+      "item_instance_id": "SKU-01#1",
+      "orientation": "XYZ",
+      "x": 400,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#2",
+      "orientation": "XYZ",
+      "x": 520,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#3",
+      "orientation": "XYZ",
+      "x": 640,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#4",
+      "orientation": "XYZ",
+      "x": 760,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#5",
+      "orientation": "XYZ",
+      "x": 880,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#6",
+      "orientation": "XYZ",
+      "x": 1000,
+      "y": 0,
+      "z": 0,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#7",
+      "orientation": "XYZ",
+      "x": 0,
+      "y": 0,
+      "z": 100,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#8",
+      "orientation": "XYZ",
+      "x": 120,
+      "y": 0,
+      "z": 100,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#9",
+      "orientation": "XYZ",
+      "x": 240,
+      "y": 0,
+      "z": 100,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    },
+    {
+      "item_instance_id": "SKU-01#10",
+      "orientation": "XYZ",
+      "x": 360,
+      "y": 0,
+      "z": 100,
+      "length": 120,
+      "width": 80,
+      "height": 60
+    }
+  ],
+  "unpacked_items": null
+}

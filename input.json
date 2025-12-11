@@ -1,0 +1,26 @@
+{
+  "container": {
+    "length": 1200,
+    "width": 235,
+    "height": 269,
+    "unit": "cm"
+  },
+  "items": [
+    {
+      "parent_item_id": "SKU-01",
+      "original_length": 120,
+      "original_width": 80,
+      "original_height": 60,
+      "quantity": 10,
+      "allow_rotation": true
+    },
+    {
+      "parent_item_id": "SKU-02",
+      "original_length": 200,
+      "original_width": 120,
+      "original_height": 100,
+      "quantity": 2,
+      "allow_rotation": false
+    }
+  ]
+}

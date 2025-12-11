@@ -20,6 +20,7 @@ type ItemInstance struct {
 	OriginalLength    int         `json:"original_length"`
 	OriginalWidth     int         `json:"original_width"`
 	OriginalHeight    int         `json:"original_height"`
+	Quantity          int         `json:"quantity"`
 	AllowRotation     bool        `json:"allow_rotation"`
 	ChosenOrientation Orientation `json:"chosen_orientation"`
 
