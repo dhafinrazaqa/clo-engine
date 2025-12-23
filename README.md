@@ -66,18 +66,13 @@ Build engine:
 go build -o clo-engine.exe ./cmd
 ```
 
-````
-
 ---
 
 ### Menjalankan Engine
 
-```md
-## Menjalankan Engine
-
 ```bash
 clo-engine.exe input.json output.json
-````
+```
 
 Dengan mode debug:
 
@@ -85,24 +80,17 @@ Dengan mode debug:
 clo-engine.exe input.json output.json --debug
 ```
 
-````
-
----
-
-## 6. Mode Debug
-
-```md
-## Mode Debug
+### Mode Debug
 
 Engine menyediakan flag `--debug` untuk menampilkan log proses algoritma.
 
 Log yang ditampilkan meliputi:
+
 - Urutan penempatan barang
 - Percobaan orientasi barang
 - Proses pengecekan shelf
 - Pembuatan shelf baru
 - Penempatan akhir barang
-````
 
 ## Format Input
 
