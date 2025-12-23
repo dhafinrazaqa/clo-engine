@@ -68,6 +68,11 @@ Build engine:
 go build -o clo-engine.exe ./cmd
 ```
 
+<<<<<<< HEAD
+=======
+---
+
+>>>>>>> 4d8154510904842c5aa157f3857a24d123f21b56
 ### Menjalankan Engine
 
 ```bash
